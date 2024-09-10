@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block page_title %} List View {% endblock page_title %}
+
+{% block content %}
+
+{% for product in products %}
+
+    <a class="text-decoration-none" href="{% url "detailview" product.id %}">
+    <h2>{{ product.title }}</h2>
+    </a>
+    <br>
+
+{% endfor %}
+
+{% endblock content %}
