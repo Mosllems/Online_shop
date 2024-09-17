@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-17 13:38+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\models.py:34
+msgid "Very Bad"
+msgstr "خیلی بد"
+
+#: .\models.py:35
+msgid "Bad"
+msgstr "بد"
+
+#: .\models.py:36
+msgid "Good"
+msgstr "خوب"
+
+#: .\models.py:37
+msgid "Very Good"
+msgstr "خیلی خوب"
+
+#: .\models.py:38
+msgid "Perfect"
+msgstr "عالی"
+
+#: .\models.py:42
+msgid "Comment Text"
+msgstr "متن دیدگاه"
+
+#: .\models.py:43
+msgid "What is your score?"
+msgstr "امتیاز شما چند است؟"
+
+#: .\templates\products\product_detail.html:56
+msgid "Add to cart"
+msgstr "اضافه به سبد خرید"
+
+#: .\templates\products\product_detail.html:60
+msgid "Categories"
+msgstr "دسته بندی"
+
+#: .\templates\products\product_detail.html:155
+msgid "Comments for"
+msgstr "نظر برای"
+
+#: .\templates\products\product_detail.html:189
+msgid "write your Comment"
+msgstr "نظر خود را بنویسید"
+
+#: .\templates\products\product_detail.html:194
+msgid "Submit"
+msgstr "ارسال"
