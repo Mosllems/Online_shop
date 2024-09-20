@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Product
 from .forms import CommentForm
+from cart.forms import AddToProductForm
 
 
 class ProductListView(generic.ListView):
@@ -29,5 +30,6 @@ def product_detail_view(request, pk):
     return render(request, "products/product_detail.html", {
         "product": product,
         "comment": product_comment,
-        "comment_form": comment
+        "comment_form": comment,
+        "product_form": AddToProductForm,
     })
