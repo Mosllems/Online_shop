@@ -1,7 +1,8 @@
 from django import forms
 
 
-class AddToProductForm(forms.Form):
-    QUANTITY_CHOICE = [str(i) for i in range(1, 30)]
+class AddToCartProductForm(forms.Form):
+    QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 31)]
 
-    quantity = forms.TypedChoiceField(choices=QUANTITY_CHOICE, coerce=int)
+    quantity = forms.TypedChoiceField(choices=QUANTITY_CHOICES, coerce=int)
+    inplace = forms.BooleanField(required=False, widget=forms.HiddenInput)

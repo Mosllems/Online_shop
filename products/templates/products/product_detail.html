@@ -1,4 +1,8 @@
 {% extends "_base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_filters %}
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
@@ -45,21 +49,19 @@
 {#                                    <span class="money old-price text-danger">۲۱۰,۰۰۰ تومان</span>#}
                                 </div>
                                 <div class="product-action d-flex align-items-sm-center align-content-center mb--30">
-                                    <form action="" method="POST">
+                                    <form action="{% url 'cart_add' product.id %}" method="POST">
                                         {% csrf_token %}
-                                        {{ product_form.as_p }}
-                                        <button type="submit">اضافه به سبد خرید</button>
+                                        <div class="quantity-wrapper d-flex justify-content-start">
+                                            <div class="quantity">
+                                                <input type="number" class="quantity-input" name="quantity" id="qty" value="1" min="1" max="30">
+                                            </div>
+                                        </div>
+                                        <button type="submit"
+                                                class="btn mt--10 btn-small btn-bg-red btn-color-white btn-hover-2">
+                                            {% translate "Add to cart" %}
+                                        </button>
                                     </form>
-{#                                    <div class="quantity-wrapper d-flex justify-content-start">#}
-{#                                        <div class="quantity">#}
-{#                                            <input type="number" class="quantity-input" name="qty" id="qty" value="1"#}
-{#                                                   min="1">#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"#}
-{#                                            onclick="window.location.href='cart.html'">#}
-{#                                        {% translate "Add to cart" %}#}
-{#                                    </button>#}
+
                                 </div>
                                 <div class="product-footer-meta mt-5 pt-5">
                                     <p><span class="m-0">{% translate "Categories" %}:</span>
