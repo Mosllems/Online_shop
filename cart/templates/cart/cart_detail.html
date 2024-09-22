@@ -51,8 +51,8 @@
                                                     </td>
                                                     <td class="product-quantity">
                                                         <form class="d-flex"
-                                                              action="{% url 'cart_add' item.product_obj.id %}"
-                                                              method="post">
+                                                            action="{% url 'cart_add' item.product_obj.id %}"
+                                                            method="post">
                                                             {% csrf_token %}
                                                             <div class="quantity">
                                                                 <input type="number"

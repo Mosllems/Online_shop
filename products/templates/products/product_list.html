@@ -1,6 +1,5 @@
 {% extends "_base.html" %}
 {% load static %}
-
 {% block page_title %} List View {% endblock page_title %}
 
 {% block content %}
@@ -49,10 +48,16 @@
                                             <div class="ShoppingYar-product">
                                                 <div class="product-inner">
                                                     <figure class="product-image">
-                                                        <a href="{% url 'detailview' product.id %}">
-                                                            <img src="https://dkstatics-public.digikala.com/digikala-products/15d774761e234a15c1c559ac540963baad9e229f_1631704695.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-                                                                 alt="Products">
-                                                        </a>
+                                                        {% if product.image %}
+                                                            <a href="{% url 'detailview' product.id %}">
+                                                                <img src="{{ product.image.url }}"
+                                                                     alt="">
+                                                            </a>
+                                                        {% else %}
+                                                            <a href="{% url 'detailview' product.id %}">
+                                                                <img src="{% static 'img/images.png'  %}"
+                                                                     alt="">
+                                                        {% endif %}
                                                         <div class="ShoppingYar-product-action">
                                                             <div class="product-action d-flex">
                                                                 <a href="wishlist.html" class="action-btn">

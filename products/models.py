@@ -19,6 +19,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField(default=0)
     available = models.BooleanField(default=True)
     producer = models.ForeignKey(Producer, on_delete=models.CASCADE)
+    image = models.ImageField(verbose_name="Product Image", upload_to="covers/", blank=True)
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_edited = models.DateTimeField(auto_now=True)
 
