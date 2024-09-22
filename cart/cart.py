@@ -83,5 +83,3 @@ class Cart:
         if self.cart:
             return False
         return True
-
-

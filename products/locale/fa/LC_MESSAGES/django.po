@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-17 13:38+0330\n"
+"POT-Creation-Date: 2024-09-22 19:24+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,22 +45,22 @@ msgstr "متن دیدگاه"
 msgid "What is your score?"
 msgstr "امتیاز شما چند است؟"
 
-#: .\templates\products\product_detail.html:56
+#: .\templates\products\product_detail.html:46
 msgid "Add to cart"
 msgstr "اضافه به سبد خرید"
 
-#: .\templates\products\product_detail.html:60
+#: .\templates\products\product_detail.html:52
 msgid "Categories"
 msgstr "دسته بندی"
 
-#: .\templates\products\product_detail.html:155
+#: .\templates\products\product_detail.html:147
 msgid "Comments for"
 msgstr "نظر برای"
 
-#: .\templates\products\product_detail.html:189
+#: .\templates\products\product_detail.html:182
 msgid "write your Comment"
 msgstr "نظر خود را بنویسید"
 
-#: .\templates\products\product_detail.html:194
+#: .\templates\products\product_detail.html:187
 msgid "Submit"
 msgstr "ارسال"

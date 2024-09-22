@@ -84,9 +84,9 @@
                             </a>
                         </li>
                         <li class="header-toolbar__item mini-cart-item">
-                            <a href="{% url 'cart_detail' %}" class="header-toolbar__btn toolbar-btn mini-cart-btn">
+                            <a href="miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
                                 <i class="flaticon flaticon-shopping-cart"></i>
-                                <sup class="mini-cart-count">2</sup>
+                                <sup class="mini-cart-count">{{ cart|length }}</sup>
                             </a>
                         </li>
                         <li class="header-toolbar__item user-info">
@@ -94,18 +94,27 @@
                                 <i class="flaticon flaticon-user"></i>
                             </a>
                             <ul class="user-info-menu">
-                                <li>
-                                    <a class="text-right" href="my-account.html">حساب کاربری</a>
-                                </li>
-                                <li>
-                                    <a class="text-right" href="{% url 'cart_detail' %}">سبد خرید</a>
-                                </li>
-                                <li>
-                                    <a class="text-right" href="wishlist.html">علاقه مندی ها</a>
-                                </li>
-                                <li>
-                                    <a class="text-right" href="order-tracking.html">تاریخچه سفارشات</a>
-                                </li>
+                                {% if user.is_authenticated %}
+                                    <li>
+                                        <p class="text-center" > Welcome {{ user.username }}</p>
+                                        <a class="text-center" href="{% url 'account_logout' %}">Log out</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-center" href="{% url 'cart_detail' %}">سبد خرید</a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a class="text-right" href="{% url 'account_signup' %}">Sign up</a>
+                                        <span></span>
+                                        <a class="text-right" href="{% url 'account_login' %}">Log in</a>
+                                    </li>
+                                {% endif %}
+{#                                <li>#}
+{#                                    <a class="text-right" href="wishlist.html">علاقه مندی ها</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a class="text-right" href="order-tracking.html">تاریخچه سفارشات</a>#}
+{#                                </li>#}
                             </ul>
                         </li>
                         <li class="header-toolbar__item">

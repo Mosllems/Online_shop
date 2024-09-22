@@ -1,8 +1,5 @@
 {% extends "_base.html" %}
 {% load crispy_forms_filters %}
-{% load crispy_forms_filters %}
-{% load crispy_forms_filters %}
-{% load crispy_forms_filters %}
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
@@ -13,19 +10,7 @@
     <!-- Main Wrapper Start -->
     <div class="wrapper">
 
-        <!-- Breadcrumb area Start -->
-        <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
-                            <h1 class="page-title">جزئیات محصول «{{ product.title }}»</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Breadcrumb area End -->
+        {% include 'top_header.html' with header_name=product.title %}
 
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper">
@@ -193,13 +178,18 @@
                                                 <div class="row">
                                                     <div class="border-top py-5 w-100"></div>
                                                     <div class="col-lg-8 m-auto">
-                                                        <span class="reply-title pull-right">{% translate "write your Comment" %}</span>
-                                                        <br>
-                                                        <form action="" method="post">
-                                                            {% csrf_token %}
-                                                            {{ comment_form|crispy }}
-                                                            <input type="submit" value="{% translate "Submit" %}">
-                                                        </form>
+                                                        {% if user.is_authenticated %}
+                                                            <span class="reply-title pull-right">{% translate "write your Comment" %}</span>
+                                                            <br>
+                                                            <form action="" method="post">
+                                                                {% csrf_token %}
+                                                                {{ comment_form|crispy }}
+                                                                <input type="submit" value="{% translate "Submit" %}">
+                                                            </form>
+                                                        {% else %}
+                                                            <p>You are not logged in please <a href="{% url 'account_login' %}">login</a></p>
+
+                                                        {% endif %}
 {#                                                        <form action="#" class="form text-right">#}
 {#                                                            <div class="form-notes mb--20">#}
 {#                                                                <p class="my-3"><span class="required">*</span>ایمیل شما#}
@@ -270,64 +260,30 @@
                     <h3 class="mini-cart__heading mb--40 mb-lg--30 text-right">سبد خرید</h3>
                     <div class="mini-cart__content">
                         <ul class="mini-cart__list text-right">
-                            <li class="mini-cart__product d-flex justify-content-between">
+                            {% for item in cart %}
+                                <li class="mini-cart__product d-flex justify-content-between">
                                 <div class="mini-cart__product__image">
                                     <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
+                                        <img src="assets/img/products/prod-1-100x100.jpg">
                                     </a>
                                 </div>
                                 <div class="mini-cart__product__content pt-2">
                                     <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول شماره یک </a>
+                                        <a href="#"> {{ item.object.obj.title }} </a>
                                         <a href="#" class="">
                                             &#10060;
                                         </a>
                                     </span>
                                     <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
+                                        <span>{{ item.product_obj.price }} تومان</span> &#215; <span>{{ item.quantity }}</span>
                                     </span>
                                 </div>
                             </li>
-                            <li class="mini-cart__product d-flex justify-content-between">
-                                <div class="mini-cart__product__image">
-                                    <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                                    </a>
-                                </div>
-                                <div class="mini-cart__product__content pt-2">
-                                    <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول سماره یک </a>
-                                        <a href="#" class="">
-                                            &#10060;
-                                        </a>
-                                    </span>
-                                    <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="mini-cart__product d-flex justify-content-between">
-                                <div class="mini-cart__product__image">
-                                    <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                                    </a>
-                                </div>
-                                <div class="mini-cart__product__content pt-2">
-                                    <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول سماره یک </a>
-                                        <a href="#" class="">
-                                            &#10060;
-                                        </a>
-                                    </span>
-                                    <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
-                                    </span>
-                                </div>
-                            </li>
+                            {% endfor %}
                         </ul>
                         <div class="mini-cart__total">
                             <span>جمع کل</span>
-                            <span class="ammount">۱۴۸,۰۰۰ تومان</span>
+                            <span class="ammount">{{ cart.get_total_price }}  تومان</span>
                         </div>
                         <div class="mini-cart__buttons">
                             <a href="cart.html" class="btn btn-fullwidth btn-bg-sand mb--20">مشاهده سبد خرید</a>

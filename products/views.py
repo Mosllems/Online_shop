@@ -14,7 +14,7 @@ class ProductListView(generic.ListView):
 
 def product_detail_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    product_comment = product.comments.filter(active=True)
+    product_comment = product.comments.all()
 
     if request.method == "POST":
         comment = CommentForm(request.POST)  # az roie form CommentForm ke request an post ast yek object misazim
@@ -32,5 +32,4 @@ def product_detail_view(request, pk):
         "comment": product_comment,
         "comment_form": comment,
         "product_form": AddToCartProductForm,
-
     })
