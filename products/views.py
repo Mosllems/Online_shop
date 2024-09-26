@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from .models import Product
+from .models import Product, Comment
 from .forms import CommentForm
 from cart.forms import AddToCartProductForm
 
 
 class ProductListView(generic.ListView):
     # model = Product  # (agat be in sorat benevisim hameie mahsolat namayesh dade mishavand ama dar khat paein bar asas mojod bodan filter mishavand)
-    queryset = Product.objects.filter(available=True)
+    queryset = Product.objects.filter(available=True).order_by("-price")
     template_name = "products/product_list.html"
     context_object_name = "products"
 

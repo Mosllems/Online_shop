@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "django.contrib.humanize",
+
     # third party apps
+    "jalali_date",
     "crispy_forms",
     "crispy_bootstrap5",
     'allauth',
@@ -55,7 +58,7 @@ INSTALLED_APPS = [
     "pages",
     "products",
     "cart",
-
+    "persian_translate",
 
 ]
 
