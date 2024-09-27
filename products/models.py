@@ -3,6 +3,7 @@ from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from ckeditor.fields import RichTextField
 
 
 class Producer(models.Model):
@@ -16,7 +17,7 @@ class Producer(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = RichTextField()
     price = models.PositiveIntegerField(default=0)
     available = models.BooleanField(default=True)
     producer = models.ForeignKey(Producer, on_delete=models.CASCADE)
