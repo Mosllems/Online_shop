@@ -17,6 +17,7 @@ class Producer(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
+    short_description = models.TextField(default="lorem ipsum", blank=False)
     description = RichTextField()
     price = models.PositiveIntegerField(default=0)
     available = models.BooleanField(default=True)

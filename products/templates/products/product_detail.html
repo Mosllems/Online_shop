@@ -35,7 +35,7 @@
                             <div class="product-summary pl-lg--30 pl-md--0 text-right p-4">
                                 <h3 class="product-title mb--20">{{ product.title }}</h3>
                                 <p class="product-short-description mb--20">
-                                    {{ product.description|safe}}
+                                    {{ product.short_description|truncatewords:50}}
                                 </p>
                                 <div class="my-5 py-5 product-price-wrapper mb--25">
                                     <span class="money text-success">{{ product.price|intcomma:False|translate_number }}</span>
@@ -92,16 +92,6 @@
                                             <p>
                                                 {{ product.description|safe}}
                                             </p>
-                                            <p>
-                                                و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی
-                                                در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می
-                                                طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
-                                                طراحان خلاقی، و فرهنگ پیشرو در زبان فارس
-                                                ی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در
-                                                ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل
-                                                حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی
-                                                اساسا مورد استفاده قرار گیرد.</p>
-
                                         </div>
                                     </div>
                                     <div class="tab-pane text-right" id="nav-info" role="tabpanel"
