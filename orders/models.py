@@ -1,18 +1,18 @@
 from django.db import models
-from django.conf import Settings
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
 
 
 class Order(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    is_paid = models.BooleanField(default=False)
-    name = models.CharField(max_length=400)
-    family_name = models.CharField(max_length=400)
-    phone_number = models.CharField(max_length=15)
-    address = models.CharField(max_length=700)
-    order_note = models.TextField(blank=True)
-    datetime_created = models.DateTimeField(auto_now_add=True)
-    datetime_edited = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_("User"))
+    is_paid = models.BooleanField(default=False, verbose_name=_("Is paid?"))
+    name = models.CharField(max_length=400, verbose_name=_("Name"))
+    family_name = models.CharField(max_length=400, verbose_name=_("Family name"))
+    phone_number = models.CharField(max_length=15, verbose_name=_("Phone number"))
+    address = models.CharField(max_length=700, verbose_name=_("Address"))
+    order_note = models.TextField(blank=True, verbose_name=_("Order Note"))
+    datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    datetime_edited = models.DateTimeField(auto_now=True, verbose_name=_("Modified"))
 
     def __str__(self):
         return f"Order {self.id}"
