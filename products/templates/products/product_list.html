@@ -1,5 +1,7 @@
 {% extends "_base.html" %}
 {% load static %}
+{% load persian_translation_tags %}
+{% load humanize %}
 {% block page_title %} List View {% endblock page_title %}
 
 {% block content %}
@@ -72,7 +74,7 @@
                                                             <a href="{% url 'detailview' product.id %}">{{ product.title }}</a>
                                                         </h3>
                                                         <div class="product-price-wrapper mb--30">
-                                                            <span class="money text-success">{{product.price}} تومان</span>
+                                                            <span class="money text-success">{{product.price|intcomma:False|translate_number}} تومان</span>
 {#                                                            <span class="money-separator">-</span>#}
 {#                                                            <span class="old-price text-danger">#}
 {#                                                                <span class="money text-danger">۸۰,۰۰۰ تومان</span>#}
