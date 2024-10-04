@@ -1,5 +1,6 @@
 {% extends "_base.html" %}
 {% load static %}
+{% load i18n %}
 {% load persian_translation_tags %}
 {% load humanize %}
 {% block page_title %} List View {% endblock page_title %}
@@ -80,9 +81,17 @@
 {#                                                                <span class="money text-danger">۸۰,۰۰۰ تومان</span>#}
 {#                                                            </span>#}
                                                         </div>
-                                                        <a href="cart.html"
-                                                           class="btn btn-small btn-bg-sand btn-color-dark px-3">اضافه
-                                                            کردن به سبد خرید</a>
+                                                        <form action="{% url 'cart_add' product.id %}" method="POST">
+                                                            {% csrf_token %}
+                                                            <div class="quantity-wrapper d-flex justify-content-start">
+                                                            <input type="hidden" class="quantity-input"
+                                                                   name="quantity" id="qty" value="1" min="1" max="30">
+                                                            </div>
+                                                            <button type="submit"
+                                                                    class="btn mt--10 btn-small btn-bg-red btn-color-white btn-hover-2">
+                                                                {% translate "Add to cart" %}
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,14 +102,30 @@
                             </div>
                             <nav class="pagination-wrap mt--35 mt-md--25 pb-5">
                                 <ul class="pagination">
-                                    <li><a href="#" class="next page-number"><i class="fa fa-angle-double-right"></i></a></li>
-                                    <li><span class="current page-number">1</span></li>
-                                    <li><a href="#" class="page-number">2</a></li>
-                                    <li><a href="#" class="page-number">3</a></li>
-                                    <li><a href="#" class="prev page-number"><i class="fa fa-angle-double-left"></i></a>
-                                    </li>
+                                    {% if page_obj.has_next %}
+                                        <li><a href="?page={{ page_obj.next_page_number }}" class="next page-number"><i class="fa fa-angle-double-right"></i></a></li>
+                                    {% endif %}
+                                    <li class="page-number mt--10 mr--2"><a href="">{{ page_obj.number }}</a></li>
+                                    {% if page_obj.has_previous %}
+                                        <li><a href="?page={{ page_obj.previous_page_number }}" class="prev page-number"><i class="fa fa-angle-double-left"></i></a></li>
+                                    {% endif %}
                                 </ul>
                             </nav>
+{#                            <nav aria-label="Page navigation " class="mb--15">#}
+{#                                <ul class="pagination justify-content-center mt-5">#}
+{#                                    {% if page_obj.has_previous %}#}
+{#                                        <li class="page-item"><a class="page-link"#}
+{#                                            href="?page={{ page_obj.previous_page_number }}">Previous</a>#}
+{#                                        </li>#}
+{#                                    {% endif %}#}
+{#                                    <li class="page-item"><a class="page-link" href="">{{ page_obj.number }}</a></li>#}
+{#                                    {% if page_obj.has_next %}#}
+{#                                        <li class="page-item"><a class="page-link"#}
+{#                                            href="?page={{ page_obj.next_page_number }}">Next</a>#}
+{#                                        </li>#}
+{#                                    {% endif %}#}
+{#                                </ul>#}
+{#                            </nav>#}
                         </div>
                     </div>
                 </div>

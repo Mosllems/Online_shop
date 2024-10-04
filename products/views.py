@@ -7,6 +7,7 @@ from cart.forms import AddToCartProductForm
 
 class ProductListView(generic.ListView):
     # model = Product  # (agat be in sorat benevisim hameie mahsolat namayesh dade mishavand ama dar khat paein bar asas mojod bodan filter mishavand)
+    paginate_by = 4
     queryset = Product.objects.filter(available=True).order_by("-price")
     template_name = "products/product_list.html"
     context_object_name = "products"
