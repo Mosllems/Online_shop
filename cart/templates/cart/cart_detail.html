@@ -39,7 +39,7 @@
                                                             href="{% url 'cart_remove'  item.product_obj.id %}"><i
                                                             class="flaticon flaticon-cross"></i></a></td>
                                                     <td class="product-thumbnail ">
-                                                        <img src="assets/img/products/prod-10-70x88.jpg">
+                                                        <img src="{{ item.product_obj.image.url }}">
                                                     </td>
                                                     <td class="product-name">
                                                         <h3>
@@ -85,9 +85,11 @@
                                 {% endif %}
                                 </div>
                             </div>
+                            {% if cart.is_empty %}
                                 <div class="col-sm-6 text-sm-right">
                                     <a href="{% url 'cart_clear' %}"  class="cart-form__btn">خالی کردن سبد خرید</a>
                                 </div>
+                            {% endif %}
                             <div class="row no-gutters border-top pt--20 mt--20">
                             </div>
                     </div>
@@ -116,7 +118,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="checkout.html" class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">
+                            <a href="{% url 'order_create' %}" class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">
                                 ثبت سفارش
                             </a>
                         </div>
