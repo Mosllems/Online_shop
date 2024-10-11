@@ -1,5 +1,4 @@
 {% extends "_base.html" %}
-
 {% load crispy_forms_tags %}
 
 {% block page_title %}
@@ -7,13 +6,33 @@
 {% endblock page_title %}
 
 {% block content %}
-    <div class="container">
-    <h1>Log In</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input type="submit" value="Log in">
-    </form>
+{#    <div class="container">#}
+{#    <h1>Log In</h1>#}
+{#    <form action="" method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ form|crispy }}#}
+{#        <input type="submit" class="btn btn-style-1 btn-submit" value="Log in">#}
+{#    </form>#}
+{#    </div>#}
+    <div class="col-md-6 mb-sm--50">
+        <div class="login-box">
+            <form class="form form--login" method="post">
+                <h3 class="heading__tertiary mb--30">ورود</h3>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-style-1 btn-submit">Log In</button>
+            </form>
+        </div>
     </div>
 
 {% endblock content %}
+    <div class="col-md-6 mb-sm--50">
+        <div class="login-box">
+            <form class="form form--login">
+                <h3 class="heading__tertiary mb--30">ورود</h3>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-style-1 btn-submit">Log In</button>
+            </form>
+        </div>
+    </div>

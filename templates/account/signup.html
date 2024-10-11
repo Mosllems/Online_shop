@@ -7,12 +7,16 @@
 {% endblock page_title %}
 
 {% block content %}
-    <div class="container">
-    <h1>Sign up</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input type="submit" value="Sign up">
-    </form>
+    <div class="col-md-6">
+        <div class="register-box">
+            <h4 class="heading__tertiary mb--30">ثبت نام</h4>
+            <form class="form form--login" method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="form__group">
+                    <input type="submit" value="Sign Up" class="btn btn-submit btn-style-1">
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock content %}

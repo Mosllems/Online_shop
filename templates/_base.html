@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
 
-
 </head>
 <body dir='rtl'>
 
@@ -90,7 +89,7 @@
                             </a>
                         </li>
                         <li class="header-toolbar__item user-info">
-                            <a href="my-account.html" class="header-toolbar__btn">
+                            <a href="{% url 'myaccount' %}" class="header-toolbar__btn">
                                 <i class="flaticon flaticon-user"></i>
                             </a>
                             <ul class="user-info-menu">

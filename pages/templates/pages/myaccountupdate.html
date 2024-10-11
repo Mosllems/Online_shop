@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    My Account
+{% endblock page_title %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="post" class="form form--account">
+            {% csrf_token %}
+                {% csrf_token %}
+                {{ form|crispy }}
+            <button type="submit" class="btn btn-style-1 btn-submit">Save</button>
+        </form>
+    </div>
+
+
+
+{% endblock content %}
