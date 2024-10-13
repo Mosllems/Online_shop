@@ -1,0 +1,126 @@
+{% extends "_base.html" %}
+{% load persian_translation_tags %}
+{% load humanize %}
+{% block page_title %}
+    My Account
+{% endblock page_title %}
+
+{% block content %}
+    {% include "top_header.html" with header_name="پروفایل کاربری" %}
+    <!-- Main Content Wrapper Start -->
+    <div class="main-content-wrapper">
+        <div class="page-content-inner ptb--80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="user-dashboard-tab flex-column flex-md-row">
+                            <div class="user-dashboard-tab__head nav flex-md-column" role="tablist"
+                                 aria-orientation="vertical">
+                                <a class="nav-link active" data-toggle="pill" role="tab" href="#dashboard"
+                                   aria-controls="dashboard" aria-selected="true">پیشخوان</a>
+                                <a class="nav-link" data-toggle="pill" role="tab" href="#orders" aria-controls="orders"
+                                   aria-selected="true">تاریخچه سفارشات</a>
+                                <a class="nav-link" data-toggle="pill" role="tab" href="#accountdetails"
+                                   aria-controls="accountdetails" aria-selected="true">جزئیات پروفایل</a>
+                                <a class="nav-link" href="{% url 'account_logout' %}">خروج</a>
+                            </div>
+                            <div class="user-dashboard-tab__content tab-content p-4">
+                                <div class="tab-pane fade show active" id="dashboard">
+                                    <p>سلام <strong>{{ user.username }}</strong></p>
+                                    <p>از منوی این قسمت میتوانید اطلاعات خودتان را بررسی کنید.</p>
+                                </div>
+
+                                <div class="tab-pane fade" id="orders">
+                                    <div class="message-box mb--30 d-none">
+                                        <p><i class="fa fa-check-circle"></i>هنوز سفارشی ثبت نشده است.</p>
+                                        <a href="shop-sidebar.html">رفتن به فروشگاه</a>
+                                    </div>
+                                    <div class="table-content table-responsive">
+                                        <table class="table text-center">
+                                            <thead>
+                                            <tr>
+                                                <th>شماره سفارش</th>
+                                                <th>نام کاربری</th>
+                                                <th>محصول</th>
+                                                <th>تعداد</th>
+                                                <th>قیمت کل</th>
+                                                <th>زمان ثبت</th>
+                                                <th>جزئیات</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for order in orders %}
+                                                {% for item in order.items.all %}
+                                                <tr>
+                                                    <td class="align-top">{{ order.id }}</td>
+                                                    <td class="align-top">{{ order.user }}</td>
+                                                    <td class="align-top">{{ item.product }}</td>
+                                                    <td class="align-top">{{ item.quantity|intcomma:False|translate_number }}</td>
+                                                    <td class="align-top">{{ item.get_total_price_each_item|intcomma:False|translate_number }}</td>
+                                                    <td class=align-top style="font-size: 15px">{{ order.datetime_created }}</td>
+                                                    <td><a href="product-details.html"
+                                                           class="btn btn-small btn-bg-red btn-color-white btn-hover-2 mr--30">نمایش</a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="addresses">
+                                    <div class="message-box mb--30 d-none">
+                                        <p><i class="fa fa-check-circle"></i>هنوز سفارشی ثبت نشده است.</p>
+                                        <a href="shop-sidebar.html">رفتن به فروشگاه</a>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="accountdetails">
+                                    <form action="#" class="form form--account">
+                                        {% csrf_token %}
+                                        <div class="row grid-space-30 mb--20">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="form__group">
+                                                    <label class="form__label form__label--2" for="f_name">Name <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" name="f_name" id="f_name"
+                                                           value="{{ user.first_name }}" class="form__input">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form__group">
+                                                    <label class="form__label form__label--2" for="l_name"> Last name
+                                                        <span class="required">*</span></label>
+                                                    <input type="text" name="l_name" id="l_name"
+                                                           value="{{ user.last_name }}" class="form__input">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form__group">
+                                                    <label class="form__label form__label--2" for="username">Username
+                                                        <span class="required">*</span></label>
+                                                    <input type="text" name="username" id="username"
+                                                           value="{{ user.username }}" class="form__input">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form__group">
+                                                    <label class="form__label form__label--2" for="email">Email
+                                                        <span class="required">*</span></label>
+                                                    <input type="text" name="email" id="email" value="{{ user.email }}"
+                                                           class="form__input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'profileupdate' %}" class="btn btn-style-1 btn-submit">Edit</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Wrapper Start -->
+{% endblock content %}

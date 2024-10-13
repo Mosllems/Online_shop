@@ -83,13 +83,13 @@
                             </a>
                         </li>
                         <li class="header-toolbar__item mini-cart-item">
-                            <a href="miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
+                            <a href="{% url 'cart_detail' %}" class="header-toolbar__btn toolbar-btn mini-cart-btn">
                                 <i class="flaticon flaticon-shopping-cart"></i>
                                 <sup class="mini-cart-count">{{ cart|length }}</sup>
                             </a>
                         </li>
                         <li class="header-toolbar__item user-info">
-                            <a href="{% url 'myaccount' %}" class="header-toolbar__btn">
+                            <a href="{% url 'userorder' %}" class="header-toolbar__btn">
                                 <i class="flaticon flaticon-user"></i>
                             </a>
                             <ul class="user-info-menu">

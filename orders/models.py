@@ -29,3 +29,6 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"OrderItem {self.id} for product {self.product}"
+
+    def get_total_price_each_item(self):
+        return self.quantity * self.price
