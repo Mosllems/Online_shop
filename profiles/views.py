@@ -10,7 +10,7 @@ class ProfileUpdate(generic.UpdateView):
     model = CustomUser
     fields = ["first_name", "last_name", "username", "age", "email"]
     template_name = "profiles/myaccountupdate.html"
-    success_url = reverse_lazy("myaccount")
+    success_url = reverse_lazy("userorder")
 
     def get_object(self):
         return self.request.user
