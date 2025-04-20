@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 
 {% load crispy_forms_tags %}
-
+{% load i18n %}
 {% block page_title %}
     My Account
 {% endblock page_title %}
@@ -12,7 +12,7 @@
             {% csrf_token %}
                 {% csrf_token %}
                 {{ form|crispy }}
-            <button type="submit" class="btn btn-style-1 btn-submit">Save</button>
+            <button type="submit" class="btn btn-style-1 btn-submit">{% translate 'Save' %}</button>
         </form>
     </div>
 

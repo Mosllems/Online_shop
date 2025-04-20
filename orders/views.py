@@ -1,6 +1,9 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.utils.translation import gettext as _
 from .forms import OrderForm
 from .models import OrderItem
 from cart.cart import Cart
@@ -32,6 +35,13 @@ def order_create(request):
                 )
             cart.clear()
             messages.success(request, "Your Order has successfully placed")
+            send_mail(subject=_('Your Order has been registered'),
+                      message=_('Your Order has been registered successfully thanks for your purchase'),
+                      from_email=settings.EMAIL_HOST_USER,
+                      recipient_list=[request.user.email],
+                      fail_silently=False
+                      )
+
 
     return render(request, "orders/order_create.html", context={
         "form": order_from,

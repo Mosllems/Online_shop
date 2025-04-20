@@ -1,6 +1,8 @@
 {% extends "_base.html" %}
 {% load persian_translation_tags %}
 {% load humanize %}
+{% load i18n %}
+
 {% block page_title %}
     My Account
 {% endblock page_title %}
@@ -120,7 +122,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="{% url 'profileupdate' %}" class="btn btn-style-1 btn-submit">Edit</a>
+                                        <a href="{% url 'profileupdate' %}" class="btn btn-style-1 btn-submit">{% translate "Edit" %}</a>
                                     </form>
                                 </div>
                             </div>

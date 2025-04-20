@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-22 19:24+0330\n"
+"POT-Creation-Date: 2025-04-20 14:26+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,50 +17,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\models.py:34
+#: .\models.py:38
 msgid "Very Bad"
 msgstr "خیلی بد"
 
-#: .\models.py:35
+#: .\models.py:39
 msgid "Bad"
 msgstr "بد"
 
-#: .\models.py:36
+#: .\models.py:40
 msgid "Good"
 msgstr "خوب"
 
-#: .\models.py:37
+#: .\models.py:41
 msgid "Very Good"
 msgstr "خیلی خوب"
 
-#: .\models.py:38
+#: .\models.py:42
 msgid "Perfect"
 msgstr "عالی"
 
-#: .\models.py:42
+#: .\models.py:46
 msgid "Comment Text"
 msgstr "متن دیدگاه"
 
-#: .\models.py:43
+#: .\models.py:47
 msgid "What is your score?"
 msgstr "امتیاز شما چند است؟"
 
-#: .\templates\products\product_detail.html:46
+#: .\templates\products\product_detail.html:56
+#: .\templates\products\product_list.html:90
+#: .\templates\products\searched_product.html:80
 msgid "Add to cart"
 msgstr "اضافه به سبد خرید"
 
-#: .\templates\products\product_detail.html:52
+#: .\templates\products\product_detail.html:62
 msgid "Categories"
 msgstr "دسته بندی"
 
-#: .\templates\products\product_detail.html:147
-msgid "Comments for"
-msgstr "نظر برای"
-
-#: .\templates\products\product_detail.html:182
+#: .\templates\products\product_detail.html:161
 msgid "write your Comment"
 msgstr "نظر خود را بنویسید"
 
-#: .\templates\products\product_detail.html:187
+#: .\templates\products\product_detail.html:166
 msgid "Submit"
 msgstr "ارسال"
+
+#: .\templates\products\searched_product.html:19
+msgid "You searched for:"
+msgstr "شما جستجو کردید:"
+
+#: .\templates\products\searched_product.html:224
+msgid "It looks like you forgot to search anything"
+msgstr "به نظر شما فراموش کردید چیزی جستجو کنید"
+
+#: .\views.py:32
+msgid "Your comment has been added successfully"
+msgstr "دیدیگاه شما با موفقیت ثبت شد"
+
+#~ msgid "Comments for"
+#~ msgstr "نظر برای"
