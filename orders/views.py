@@ -15,7 +15,7 @@ def order_create(request):
     cart = Cart(request)
 
     if len(cart) == 0:
-        messages.warning(request, "Your cart is empty please purchase something")
+        messages.warning(request, _("Your cart is empty please purchase something"))
         return redirect("listview")
 
     if request.method == "POST":
@@ -34,7 +34,7 @@ def order_create(request):
                     price=product.price,
                 )
             cart.clear()
-            messages.success(request, "Your Order has successfully placed")
+            messages.success(request, _("Your Order has successfully placed"))
             send_mail(subject=_('Your Order has been registered'),
                       message=_('Your Order has been registered successfully thanks for your purchase'),
                       from_email=settings.EMAIL_HOST_USER,

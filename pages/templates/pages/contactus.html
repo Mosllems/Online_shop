@@ -1,0 +1,92 @@
+{% extends "_base.html" %}
+
+{% block page_title %}
+    Contact us
+{% endblock page_title %}
+
+{% block content %}
+    {% include "top_header.html" with header_name="تماس با ما" %}
+    <!-- Main Content Wrapper Start -->
+    <div id="content" class="main-content-wrapper">
+        <div class="page-content-inner pt--75">
+            <div class="container">
+                <div class="row pb--80">
+                    <div class="col-md-7 mb-sm--30">
+                        {% if user.is_authenticated %}
+                             <h2 class="heading__secondary mb--50 mb-md--35 mb-sm--20">پیام خود را به ما بگویید</h2>
+                        <!-- Contact form Start Here -->
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form__group mb--20">
+                                    <input type="text" id="contact_name" name="name"
+                                           class="form__input form__input--2" placeholder="نام*">
+                                </div>
+                                <div class="form__group mb--20">
+                                    <input type="text" id="contact_phone" name="phone_number"
+                                           class="form__input form__input--2" placeholder="شماره تماس*">
+                                </div>
+                                <div class="form__group mb--20">
+                                    <textarea class="form__input form__input--textarea" id="text"
+                                              name="text" placeholder="پیام شما*"></textarea>
+                                </div>
+                                <div class="form__group">
+                                    <button type="submit" class="btn-submit">ارسال</button>
+                                </div>
+                            </form>
+                        {% else %}
+                            <h2>Please <a href="{% url 'account_login' %}">login</a> first inorder to send Messages</h2>
+                            <!-- Contact form end Here -->
+                        {% endif %}
+                    </div>
+                    <div class="col-md-5 pl--50 pl-sm--30">
+                        <h2 class="heading__secondary mb--50">اطلاعات تماس</h2>
+
+                        <!-- Contact info widget start here -->
+                        <div class="contact-info-widget mb--45">
+                            <div class="contact-info">
+                                <h3 class="heading__tertiary">آدرس</h3>
+                                <p>شهرک غرب، بلوار نیرو، برج تماس <br> ایران تهران </p>
+                            </div>
+                        </div>
+                        <!-- Contact info widget end here -->
+
+                        <!-- Contact info widget start here -->
+                        <div class="contact-info-widget mb--45">
+                            <div class="contact-info">
+                                <h3 class="heading__tertiary">دی جی مارکت</h3>
+                                <p>بهترین و جدید ترین محصولات فناوری و تکنولوژی <br> ایران تهران </p>
+                            </div>
+                        </div>
+                        <!-- Contact info widget end here -->
+
+                        <!-- Contact info widget start here -->
+                        <div class="contact-info-widget two-column-list sm-one-column mb--45">
+                            <div class="contact-info mb-sm--35">
+                                <h3 class="heading__tertiary">شماره تماس</h3>
+                                <a href="">+98912345678</a>
+                            </div>
+                            <div class="contact-info">
+                                <h3 class="heading__tertiary">ایمیل</h3>
+                                <a href="mailto:info@la-studioweb.com">info@dgmarket.com</a>
+                            </div>
+                        </div>
+                        <!-- Contact info widget end here -->
+
+                        <!-- Social Icons Start Here -->
+                        <ul class="social social-sharing">
+                            <li class="social__item">
+                                <a href="#" class="social__link instagram">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- Social Icons End Here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Wrapper Start -->
+
+
+{% endblock content %}

@@ -1,0 +1,215 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load i18n %}
+{% load persian_translation_tags %}
+{% load humanize %}
+
+
+{% block page_title %} Searched Products {% endblock page_title %}
+
+
+{% block content %}
+    <body dir='rtl'>
+
+    {% if searched %}
+        <!-- Main Wrapper Start -->
+        <div class="wrapper">
+
+            <!-- Main Content Wrapper Start -->
+            <h1 align="center">{% translate "You searched for:" %}{{ searched }}</h1>
+            <div class="main-content-wrapper container-fluid">
+                <div class="shop-page-wrapper shop-fullwidth">
+                    <div class="container">
+                        <div class="row mb--50">
+                            <div class="col-12">
+                                <div class="shop-toolbar">
+                                    <div class="container row align-items-center">
+                                        <div class="col-lg-12 mb-md--50 mb-xs--10">
+                                            <div class="shop-toolbar__left d-flex align-items-sm-center align-items-start flex-sm-row flex-column">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid shop-products">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="tab-content" id="product-tab-content">
+                                    <div class="tab-pane fade show active" id="nav-all">
+                                        <div class="row xxl-block-grid-6 grid-space-20">
+                                            {% for product in products %}
+                                            <div class="col-xl-3 col-md-4 col-sm-6 mb--50">
+                                                <div class="ShoppingYar-product">
+                                                    <div class="product-inner">
+                                                        <figure class="product-image">
+                                                            {% if product.image %}
+                                                                <a href="{% url 'detailview' product.id %}">
+                                                                    <img src="{{ product.image.url }}"
+                                                                         alt="">
+                                                                </a>
+                                                            {% else %}
+                                                                <a href="{% url 'detailview' product.id %}">
+                                                                    <img src="{% static 'img/images.png'  %}"
+                                                                         alt="">
+                                                            {% endif %}
+                                                            <div class="ShoppingYar-product-action">
+                                                                <div class="product-action d-flex">
+                                                                    <a href="wishlist.html" class="action-btn">
+                                                                        <i class="flaticon flaticon-like"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </figure>
+                                                        <div class="product-info">
+                                                            <h3 class="product-title h6 mb--15">
+                                                                <a href="{% url 'detailview' product.id %}">{{ product.title }}</a>
+                                                            </h3>
+                                                            <div class="product-price-wrapper mb--30">
+                                                                <span class="money text-success">{{product.price|intcomma:False|translate_number}} تومان</span>
+                                                            </div>
+                                                            <form action="{% url 'cart_add' product.id %}" method="POST">
+                                                                {% csrf_token %}
+                                                                <div class="quantity-wrapper d-flex justify-content-start">
+                                                                <input type="hidden" class="quantity-input"
+                                                                       name="quantity" id="qty" value="1" min="1" max="30">
+                                                                </div>
+                                                                <button type="submit"
+                                                                        class="btn mt--10 btn-small btn-bg-red btn-color-white btn-hover-2">
+                                                                    {% translate "Add to cart" %}
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <nav class="pagination-wrap mt--35 mt-md--25 pb-5">
+                                    <ul class="pagination">
+                                        {% if page_obj.has_next %}
+                                            <li><a href="?page={{ page_obj.next_page_number }}" class="next page-number"><i class="fa fa-angle-double-right"></i></a></li>
+                                        {% endif %}
+                                        <li class="page-number mt--10 mr--2"><a href="">{{ page_obj.number }}</a></li>
+                                        {% if page_obj.has_previous %}
+                                            <li><a href="?page={{ page_obj.previous_page_number }}" class="prev page-number"><i class="fa fa-angle-double-left"></i></a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Content Wrapper Start -->
+
+
+            <!-- Search form Popup Start -->
+            <div class="searchform__popup" id="searchForm">
+                <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
+                <div class="searchform__body">
+                    <p>در باکس زیر عبارت خود را وارد کنید</p>
+                    <form class="searchform">
+                        <input type="text" name="popup-search" id="popup-search" class="searchform__input"
+                               placeholder="جستجو در بین محصولات...">
+                        <button type="submit" class="searchform__submit"><i
+                                class="flaticon flaticon-magnifying-glass-icon"></i></button>
+                    </form>
+                </div>
+            </div>
+            <!-- Search form Popup End -->
+
+            <!-- Mini Cart Start -->
+            <aside class="mini-cart" id="miniCart">
+                <div class="mini-cart-wrapper">
+                    <a href="" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
+                    <div class="mini-cart-inner">
+                        <h3 class="mini-cart__heading mb--40 mb-lg--30 text-right">سبد خرید</h3>
+                        <div class="mini-cart__content">
+                            <ul class="mini-cart__list text-right">
+                                <li class="mini-cart__product d-flex justify-content-between">
+                                    <div class="mini-cart__product__image">
+                                        <a href="#">
+                                            <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
+                                        </a>
+                                    </div>
+                                    <div class="mini-cart__product__content pt-2">
+                                        <span class="mini-cart__product__title d-flex flex-row justify-content-between">
+                                            <a href="#"> محصول سماره یک </a>
+                                            <a href="#" class="">
+                                                &#10060;
+                                            </a>
+                                        </span>
+                                        <span class="mini-cart__product__quantity">
+                                            <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li class="mini-cart__product d-flex justify-content-between">
+                                    <div class="mini-cart__product__image">
+                                        <a href="#">
+                                            <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
+                                        </a>
+                                    </div>
+                                    <div class="mini-cart__product__content pt-2">
+                                        <span class="mini-cart__product__title d-flex flex-row justify-content-between">
+                                            <a href="#"> محصول سماره یک </a>
+                                            <a href="#" class="">
+                                                &#10060;
+                                            </a>
+                                        </span>
+                                        <span class="mini-cart__product__quantity">
+                                            <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li class="mini-cart__product d-flex justify-content-between">
+                                    <div class="mini-cart__product__image">
+                                        <a href="#">
+                                            <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
+                                        </a>
+                                    </div>
+                                    <div class="mini-cart__product__content pt-2">
+                                        <span class="mini-cart__product__title d-flex flex-row justify-content-between">
+                                            <a href="#"> محصول سماره یک </a>
+                                            <a href="#" class="">
+                                                &#10060;
+                                            </a>
+                                        </span>
+                                        <span class="mini-cart__product__quantity">
+                                            <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="mini-cart__total">
+                                <span>جمع کل</span>
+                                <span class="ammount">۱۴۸,۰۰۰ تومان</span>
+                            </div>
+                            <div class="mini-cart__buttons">
+                                <a href="cart.html" class="btn btn-fullwidth btn-bg-sand mb--20">مشاهده سبد خرید</a>
+                                <a href="checkout.html" class="btn btn-fullwidth btn-bg-sand">پرداخت</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <!-- Mini Cart End -->
+
+            <!-- Global Overlay Start -->
+            <div class="ShoppingYar-global-overlay"></div>
+            <!-- Global Overlay End -->
+
+        </div>
+        <!-- Main Wrapper End -->
+    {% else %}
+        <h2>{% translate "It looks like you forgot to search anything" %}</h2>
+    {% endif %}
+
+
+    </body>
+
+{% endblock content %}

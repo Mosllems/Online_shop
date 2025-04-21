@@ -80,8 +80,8 @@
                                         </table>
                                     </div>
                                 {% else %}
-                                    <p>You don't have anything in cart</p>
-                                    <a href="{% url 'listview' %}">Go shopping</a>
+                                    <p>{% translate "You don't have anything in cart" %}</p>
+                                    <a href="{% url 'listview' %}">{% translate 'Go shopping' %}</a>
                                 {% endif %}
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.utils.translation import gettext as _
 from products.models import Product
 from .cart import Cart
 from .forms import AddToCartProductForm
@@ -45,6 +46,6 @@ def delete_from_cart(request, product_id):
 def clear_form(request):
     cart = Cart(request)
     cart.clear()
-    messages.success(request, "Your cart has been cleared successfully")
+    messages.success(request, _("Your cart has been cleared successfully"))
     return redirect("cart_detail")
 
